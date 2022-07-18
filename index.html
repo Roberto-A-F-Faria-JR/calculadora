@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        
+        <header class="tela">
+            <form class="form"action="">
+                <label id="op"></label>
+                <input type="text" id="result" value=""class="campo" disabled>
+            </form>
+        </header>
+
+        <section class="corpo">
+                <input type="button" name="btn" value="1" class="btn">
+                <input type="button" name="btn" value="2" class="btn">
+                <input type="button" name="btn" value="3" class="btn">
+                <input type="button" name="soma" value="+" class="btn">
+                <input type="button" name="c" value="C" class="btn">
+                <input type="button" name="btn" value="4" class="btn">
+                <input type="button" name="btn" value="5" class="btn">
+                <input type="button" name="btn" value="6" class="btn">
+                <input type="button" name="menos" value="-" class="btn">
+                <input type="button" name="CE" value="CE" class="btn">
+                <input type="button" name="btn" value="7" class="btn">
+                <input type="button" name="btn" value="8" class="btn">
+                <input type="button" name="btn" value="9" class="btn">
+                <input type="button" name="divisao" value="/" class="btn">
+                <input type="button" name="igual" value="=" class="btn igual">
+                <input type="button" name="btn" value="0" class="btn zero">
+                <input type="button" name="btn" value="." class="btn">
+                <input type="button" name="multi" value="*" class="btn">
+        </section>
+    </div>  
+</body>
+</html>
+<script>
+    $( function(){
+
+        var valor1, valor2, operacao;
+
+        $(".btn").click(function(){
+            $("#result").val($("#result").val() + $(this).val()); 
+        });
+            $("input[name=CE]").click( function(){
+                $("#result").val('');
+                $("#op").text('');
+            });
+
+
+            $("input[name=soma]").click( function(){
+                if($("#result").val() != ''){
+                    valor1 = parseFloat($("#result").val());
+                    $("#result").val('');
+                    operacao = "soma";
+                    $("#op").text($(this).val());
+                } else {
+                    alert('Insira um valor para efetuar a operação!');
+                }
+            });
+                
+            $("input[name=menos]").click( function(){
+                if($("#result").val() != ''){
+                    valor1 = parseFloat($("#result").val());
+                    $("#result").val('');
+                    operacao = "menos";
+                    $("#op").text($(this).val());
+                } else {
+                    alert('Insira um valor para efetuar a operação!');
+                }
+            });
+
+            $("input[name=divisao]").click( function(){
+                if($("#result").val() != ''){
+                    valor1 = parseFloat($("#result").val());
+                    $("#result").val('');
+                    operacao = "divisao";
+                    $("#op").text($(this).val());
+                } else {
+                    alert('Insira um valor para efetuar a operação!');
+                }
+            });
+
+            $("input[name=multi]").click( function(){
+                if($("#result").val() != ''){
+                    valor1 = parseFloat($("#result").val());
+                    $("#result").val('');
+                    operacao = "multi";
+                    $("#op").text($(this).val());
+                } else {
+                    alert('Insira um valor para efetuar a operação!');
+                }
+            });
+
+            $("input[name=igual]").click( function(){
+
+                if($("#result").val() != ''){
+                    valor2 = parseFloat($("#result").val());
+
+                    if(operacao == "soma"){
+                        $("#result").val(valor1 + valor2);
+
+                    } else if (operacao == "menos"){
+                        $("#result").val(valor1 - valor2);
+
+                    } else if (operacao == "divisao"){
+                        $("#result").val(valor1 / valor2);
+
+                    } else {
+                        $("#result").val(valor1 * valor2);
+                    }
+                    
+                } else {
+                    alert('Insira um valor para efetuar o calculo!');
+                }
+            });
+                $("input[name=c]").click( function(){
+                    let len = $("#result").val().length;
+                    let valor = $("#result").val();
+
+                    valor = valor.replace(valor.charAt(len - 1), '');
+
+                    $("#result").val(valor);
+
+                });
+    });
+</script>
